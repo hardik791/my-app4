@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ratnamani | Site is live</title>
+  <style>
+    :root {
+      --bg: #f3f6f4;
+      --ink: #14302b;
+      --muted: #4d6660;
+      --accent: #0b7a64;
+      --card: #ffffff;
+      --line: #d3e0db;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1d1a;
+        --ink: #e6f1ed;
+        --muted: #9db5ae;
+        --accent: #4fd1b0;
+        --card: #162824;
+        --line: #26413a;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    header, main, footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    header { padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.15rem; font-weight: bold; letter-spacing: .02em; }
+    nav a { margin-left: 1.25rem; color: var(--muted); text-decoration: none; font-family: system-ui, sans-serif; font-size: .95rem; }
+    nav a:hover, nav a:focus-visible { color: var(--accent); text-decoration: underline; }
+    h1 { font-size: clamp(2.2rem, 7vw, 3.6rem); line-height: 1.1; margin: 4rem 0 1rem; }
+    .lead { font-size: 1.2rem; color: var(--muted); max-width: 52ch; }
+    .status {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-family: system-ui, sans-serif; font-size: .95rem;
+      border: 1px solid var(--line); background: var(--card);
+      padding: .45rem .9rem; border-radius: 999px; margin-top: 1.5rem;
+    }
+    .dot { width: .65rem; height: .65rem; border-radius: 50%; background: var(--accent); }
+    section { margin-top: 3.5rem; }
+    h2 { font-size: 1.5rem; margin-bottom: .5rem; }
+    ul.checks { list-style: none; padding: 0; margin: 1rem 0 0; }
+    ul.checks li {
+      padding: .8rem 1rem; margin-bottom: .6rem;
+      background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+      font-family: system-ui, sans-serif; font-size: .98rem;
+    }
+    ul.checks li::before { content: "\2713"; color: var(--accent); font-weight: bold; margin-right: .7rem; }
+    button {
+      font: inherit; font-family: system-ui, sans-serif; font-size: .95rem;
+      background: var(--accent); color: #fff; border: 0; border-radius: 8px;
+      padding: .7rem 1.2rem; cursor: pointer; margin-top: 1rem;
+    }
+    button:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+    #result { margin-top: .8rem; font-family: system-ui, sans-serif; color: var(--muted); min-height: 1.5rem; }
+    footer { margin: 4rem auto 2rem; color: var(--muted); font-family: system-ui, sans-serif; font-size: .85rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Ratnamani</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#test">Test</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Your website is live on AWS.</h1>
+    <p class="lead">If you can read this page, your files are being served from Amazon S3 through CloudFront.</p>
+    <div class="status"><span class="dot"></span> Deployed from GitHub</div>
+
+    <section id="about">
+      <h2>What this page confirms</h2>
+      <ul class="checks">
+        <li>The S3 bucket holds index.html</li>
+        <li>CloudFront can read the bucket through Origin Access Control</li>
+        <li>The page loads over HTTPS</li>
+      </ul>
+    </section>
+
+    <section id="test">
+      <h2>Check your last deploy</h2>
+      <p>Change the version number in this file, push to main, then reload. If the new number appears, your CI/CD pipeline works.</p>
+      <p><strong>Version: 1.0</strong></p>
+      <button id="check" type="button">Show page load time</button>
+      <div id="result" role="status"></div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Replace this text with your real contact details.</p>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Ratnamani. Hosted on AWS S3 and CloudFront.</footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("check").addEventListener("click", function () {
+      var t = performance.timing;
+      var ms = t.loadEventEnd - t.navigationStart;
+      document.getElementById("result").textContent =
+        ms > 0 ? "This page loaded in " + ms + " ms." : "Reload the page and try again.";
+    });
+  </script>
+</body>
+</html>
