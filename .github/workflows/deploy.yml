@@ -7,10 +7,10 @@ on:
 env:
   AWS_REGION: ap-south-1
   ECR_REPOSITORY: myappsecr
-  ECS_CLUSTER: myappsECS
-  ECS_SERVICE: myappsecrtask-service-2dxsnaoh
-  ECS_TASK_DEFINITION_NAME: myappsecrtask
-  CONTAINER_NAME: Container1
+  ECS_CLUSTER: ECSclusterforEC2
+  ECS_SERVICE: ECStaskforEC2-service-zmbjceus
+  ECS_TASK_DEFINITION_NAME: ECStaskforEC2
+  CONTAINER_NAME: EC2container
 
 jobs:
   deploy:
