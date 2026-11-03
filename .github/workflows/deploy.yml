@@ -6,11 +6,11 @@ on:
 
 env:
   AWS_REGION: ap-south-1
-  ECR_REPOSITORY: myapps
-  ECS_CLUSTER: myappscluster
-  ECS_SERVICE: myappstask-service-dhh2rnd8
-  ECS_TASK_DEFINITION_NAME: myappstask
-  CONTAINER_NAME: myappcontainer
+  ECR_REPOSITORY: myappsecr
+  ECS_CLUSTER: myappsECS
+  ECS_SERVICE: myappsecrtask-service-2dxsnaoh
+  ECS_TASK_DEFINITION_NAME: myappsecrtask
+  CONTAINER_NAME: Container1
 
 jobs:
   deploy:
